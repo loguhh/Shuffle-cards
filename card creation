@@ -1,0 +1,20 @@
+Module 1 - Card Creation
+Creates a standard deck containing 52 cards: 13 ranks in each of 4 suits. Save as CardCreation.java.
+import java.util.ArrayList;
+public class CardCreation {
+ public static void main(String[] args) {
+ ArrayList<String> cards = new ArrayList<>();
+ String[] suits = {"Hearts", "Diamonds", "Clubs", "Spades"};
+ String[] ranks = {"A", "2", "3", "4", "5", "6", "7",
+ "8", "9", "10", "J", "Q", "K"};
+ for (String suit : suits) {
+ for (String rank : ranks) {
+ cards.add(rank + " of " + suit);
+ }
+ }
+ System.out.println("Total cards: " + cards.size());
+ for (String card : cards) {
+ System.out.println(card);
+ }
+ }
+}

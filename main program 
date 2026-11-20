@@ -1,0 +1,64 @@
+Complete Java Swing Main Program
+Complete GUI program with 52 cards, Shuffle, New Game and Reset buttons. Save the file as ShuffleCardGame.java.
+import javax.swing.*;
+import java.awt.*;
+import java.util.*;
+public class ShuffleCardGame extends JFrame {
+ private ArrayList<String> cards = new ArrayList<>();
+ private JPanel cardPanel;
+ public ShuffleCardGame() {
+ setTitle("Shuffle Cards Game");
+ setSize(800, 600);
+ setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+ setLayout(new BorderLayout());
+ cardPanel = new JPanel(new GridLayout(0, 7, 5, 5));
+ add(new JScrollPane(cardPanel), BorderLayout.CENTER);
+ JPanel buttonPanel = new JPanel();
+ JButton shuffleButton = new JButton("Shuffle");
+ JButton newGameButton = new JButton("New Game");
+ JButton resetButton = new JButton("Reset");
+ buttonPanel.add(shuffleButton);
+ buttonPanel.add(newGameButton);
+ buttonPanel.add(resetButton);
+ add(buttonPanel, BorderLayout.SOUTH);
+ createCards();
+ displayCards();
+ shuffleButton.addActionListener(e -> {
+ Collections.shuffle(cards);
+ displayCards();
+ });
+ newGameButton.addActionListener(e -> {
+ createCards();
+ Collections.shuffle(cards);
+ displayCards();
+ });
+ resetButton.addActionListener(e -> {
+ createCards();
+ displayCards();
+ });
+ }
+ // Module 1: Create 52 cards
+ private void createCards() {
+ cards.clear();
+ String[] suits = {"Hearts", "Diamonds", "Clubs", "Spades"};
+ String[] ranks = {"A", "2", "3", "4", "5", "6", "7",
+ "8", "9", "10", "J", "Q", "K"};
+ for (String suit : suits) {
+ for (String rank : ranks) {
+ cards.add(rank + " of " + suit);
+ }
+ }
+ }
+ // Module 2: Display cards
+ private void displayCards() {
+ cardPanel.removeAll();
+ for (String card : cards) {
+ JLabel label = new JLabel(card, SwingConstants.CENTER);
+ label.setBorder(BorderFactory.createLineBorder(Color.BLACK)); }
+ public static void main(String[] args) {
+ SwingUtilities.invokeLater(() -> {
+ ShuffleCardGame game = new ShuffleCardGame();
+ game.setVisible(true);
+ });
+ }
+}

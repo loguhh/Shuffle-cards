@@ -1,0 +1,29 @@
+Module 4 - Reset Cards
+Resets the deck to its original ordered state after shuffling. Save as ResetCards.java.
+import java.util.ArrayList;
+import java.util.Collections;
+public class ResetCards {
+ static ArrayList<String> cards = new ArrayList<>();
+ static void createCards() {
+ cards.clear();
+ String[] suits = {"Hearts", "Diamonds", "Clubs", "Spades"};
+ String[] ranks = {"A", "2", "3", "4", "5", "6", "7",
+ "8", "9", "10", "J", "Q", "K"};
+ for (String suit : suits) {
+ for (String rank : ranks) {
+ cards.add(rank + " of " + suit);
+ }
+ }
+ }
+ public static void main(String[] args) {
+ createCards();
+ Collections.shuffle(cards);
+ System.out.println("Cards before reset: " + cards);
+ // Reset: restore the original ordered deck
+ createCards();
+ System.out.println("\\nCards after reset:");
+ for (String card : cards) {
+ System.out.println(card);
+ }
+ }
+}
